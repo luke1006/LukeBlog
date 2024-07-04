@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../StyleSheet/basic1.css" rel="stylesheet" />
+    <link href="../StyleSheet/form.css" rel="stylesheet" />
+    <script src="../JavsScripts/jquery3.7.js"></script>
+    <script src="../JavsScripts/basicPost.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            CheckSignState();
+            document.getElementById("tdselect").innerHTML = LoadAllAlbum().data;
+        });
+
+        function submit() {
+            var form = new FormData();
+            form.append("Title", $("#txtTitle").val());
+            form.append("UploadTime", $("#txtUploadTime").val());
+            form.append("Author", $("#txtAuthor").val());
+            form.append("IsPublished", $("#slctIsPublished").val());
+            form.append("SeoKeywords", $("#txtSeoKeywords").val());
+            form.append("SeoDescription", $("#txtSeoDescription").val());
+            form.append("AlbumId", $("#slctAlbumId").val());
+            form.append("SFileSelect", $('#SFileSelect')[0].files[0]);
+            var url = "/SFile/SFileAdd";
+            var data = DataPost(url, form);
+            alert(data.status);
+            window.location.href = "sfile_list.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="center">
+        <p class="title">
+            文件新增
+        </p>
+        <div class="grid">
+            <table border="0">
+                <tr>
+                    <td class="column-name">标题</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtTitle" type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">作者</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtAuthor" type="text" value="" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="column-name">选择文件</td>
+                    <td class="column-value">
+                        <input id="SFileSelect" type="file" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">上传时间</td>
+                    <td class="column-value">
+                        <input class="txt-common" name="UploadTime" type="datetime-local" id="txtUploadTime">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">合集类型</td>
+                    <td id="tdselect" class="column-value"></td>
+                </tr>
+                <tr>
+                    <td class="column-name">是否发布</td>
+                    <td class="column-value">
+                        <select class="select-common" id="slctIsPublished" name="IsPublished" style="width:177px;">
+                            <option value="1" selected="selected">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">SEO关键字</td>
+                    <td class="column-value"><input class="txt-common" id="txtSeoKeywords" type="text" value="" /></td>
+                </tr>
+                <tr>
+                    <td class="column-name">SEO描述</td>
+                    <td class="column-value"><input class="txt-common" id="txtSeoDescription" type="text" value="" /></td>
+                </tr>
+                <tr>
+                    <td class="column-name"></td>
+                    <td class="column-value">
+                        <input id="Button1" class="button-common" type="button" value="提交" onclick="submit()" />
+                        <input class="button-common" id="Button4" type="button" value="返回" onclick="window.location.href = 'sfile_list.html';" />
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

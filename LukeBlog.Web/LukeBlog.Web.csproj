@@ -1,0 +1,976 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{44322A41-D0AC-4F17-9BF6-9731885E59F7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LukeBlog.Web</RootNamespace>
+    <AssemblyName>LukeBlog.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlSugar, Version=5.1.4.146, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SqlSugar.5.1.4.146\lib\SqlSugar.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.118.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.118.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Album\album_add.html" />
+    <Content Include="Admin\Album\album_edit.html" />
+    <Content Include="Admin\Album\album_list.html" />
+    <Content Include="Admin\Article\article_add.html" />
+    <Content Include="Admin\Article\article_edit.html" />
+    <Content Include="Admin\Article\article_list.html" />
+    <Content Include="Admin\Comment\comment_list.html" />
+    <Content Include="Admin\Comment\comment_reply.html" />
+    <Content Include="Admin\Images\pic_icon.jpg" />
+    <Content Include="Admin\index.html" />
+    <Content Include="Admin\JavsScripts\basicPost.js" />
+    <Content Include="Admin\login.html" />
+    <Content Include="Admin\SFile\sfile_add.html" />
+    <Content Include="Admin\SFile\sfile_edit.html" />
+    <Content Include="Admin\SFile\sfile_list.html" />
+    <Content Include="Admin\Photo\photo_add.html" />
+    <Content Include="Admin\Photo\photo_edit.html" />
+    <Content Include="Admin\Photo\photo_list.html" />
+    <Content Include="Admin\Public\Bottom.html" />
+    <Content Include="Admin\Public\Center.html" />
+    <Content Include="Admin\Public\Left.html" />
+    <Content Include="Admin\Public\Top.html" />
+    <Content Include="Admin\StyleSheet\basic.css" />
+    <Content Include="Admin\StyleSheet\basic1.css" />
+    <Content Include="Admin\StyleSheet\form.css" />
+    <Content Include="Admin\StyleSheet\list.css" />
+    <Content Include="Admin\System\passwordmodify.html" />
+    <Content Include="Admin\System\websiteconfig.html" />
+    <Content Include="Admin\Video\video_add.html" />
+    <Content Include="Admin\Video\video_edit.html" />
+    <Content Include="Admin\Video\video_list.html" />
+    <Content Include="desktop.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="index.html" />
+    <Content Include="readme.txt" />
+    <Content Include="Global.asax" />
+    <Content Include="Admin\JavsScripts\jquery3.7.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\action_config.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\action_crawler.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\action_list.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\action_upload.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\ASPJson.class.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\config_loader.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\controller.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\MultiformProcessor.class.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\PathFormatter.class.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\Uploader.Class.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\anchor\anchor.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\attachment.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\attachment.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\attachment.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_chm.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_default.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_doc.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_exe.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_jpg.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_mp3.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_mv.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_pdf.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_ppt.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_psd.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_rar.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_txt.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\fileTypeImages\icon_xls.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\alignicon.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\alignicon.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\file-icons.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\file-icons.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\icons.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\icons.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\image.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\progress.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\success.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\attachment\images\success.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\background\background.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\background\background.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\background\background.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\background\images\bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\background\images\success.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\chart.config.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\charts.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\charts.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\charts.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\images\charts0.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\images\charts1.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\images\charts2.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\images\charts3.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\images\charts4.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\charts\images\charts5.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\emotion.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\emotion.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\emotion.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\0.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\bface.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\cface.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\fface.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\jxface2.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\neweditor-tab-bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\tface.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\wface.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\emotion\images\yface.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\gmap\gmap.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\help\help.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\help\help.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\help\help.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\image.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\image.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\image.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\alignicon.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\icons.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\icons.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\image.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\progress.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\success.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\image\images\success.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\insertframe\insertframe.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\internal.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\link\link.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\map\map.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\map\show.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\music\music.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\music\music.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\music\music.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\preview\preview.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\addimg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\brush.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\delimg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\delimgH.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\empty.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\emptyH.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\eraser.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\redo.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\redoH.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\scale.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\scaleH.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\size.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\undo.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\images\undoH.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\scrawl.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\scrawl.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\scrawl\scrawl.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\searchreplace\searchreplace.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\searchreplace\searchreplace.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\snapscreen\snapscreen.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\spechars\spechars.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\spechars\spechars.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\table\dragicon.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\table\edittable.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\table\edittable.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\table\edittable.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\table\edittd.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\table\edittip.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\config.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\images\bg.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\images\pre0.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\images\pre1.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\images\pre2.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\images\pre3.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\images\pre4.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\template.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\template.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\template\template.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\center_focus.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\file-icons.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\file-icons.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\icons.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\icons.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\image.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\left_focus.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\none_focus.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\progress.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\right_focus.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\success.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\images\success.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\video.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\video.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\video\video.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\webapp\webapp.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\wordimage\fClipboard_ueditor.swf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\wordimage\imageUploader.swf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\wordimage\tangram.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\wordimage\wordimage.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\dialogs\wordimage\wordimage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\Gruntfile.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\lib\commons-codec-1.9.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\lib\commons-fileupload-1.3.1.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\lib\commons-io-2.4.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\lib\json.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\ActionEnter.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\ConfigManager.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\ActionMap.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\ActionState.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\AppInfo.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\BaseState.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\FileType.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\MIMEType.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\MultiState.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\define\State.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\Encoder.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\hunter\FileManager.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\hunter\ImageHunter.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\PathFormat.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\upload\Base64Uploader.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\upload\BinaryUploader.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\upload\StorageManager.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\src\com\baidu\ueditor\upload\Uploader.java" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\en.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\addimage.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\alldeletebtnhoverskin.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\alldeletebtnupskin.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\background.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\button.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\copy.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\deletedisable.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\deleteenable.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\listbackground.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\localimage.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\music.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\rotateleftdisable.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\rotateleftenable.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\rotaterightdisable.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\rotaterightenable.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\en\images\upload.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\zh-cn\images\copy.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\zh-cn\images\localimage.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\zh-cn\images\music.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\zh-cn\images\upload.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\lang\zh-cn\zh-cn.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\Bin\Newtonsoft.Json.dll" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\Bin\Newtonsoft.Json.pdb" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\Bin\Newtonsoft.Json.xml" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\net.sln" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484158325509517334937.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484160337655225619969.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484160366927692361006.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484160396300345276453.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484160422176229260828.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484160449850763176275.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484160478224311389895.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484182161727965314120.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484201717572311167761.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484208110279975406163.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484209106889885927778.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484233655021446430233.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484245457675285572393.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484256801967258815684.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484272679089483212577.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484287991850965126111.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484287991950905126111.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484287991950905126111.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484288003040859327172.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484326363915079798329.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484334231816432997190.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484339791474589413443.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484343408684531929627.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240229\6384484343409635359457044.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240301\6384492404784742716473459.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240315\6384613794930238119182245.jpg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\upload\image\20240315\6384614174434135445774283.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\php\action_crawler.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\php\action_list.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\php\action_upload.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\php\controller.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\php\Uploader.class.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\dialogbase.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\anchor.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\arrow.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\arrow_down.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\arrow_up.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\button-bg.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\cancelbutton.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\charts.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\cursor_h.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\cursor_h.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\cursor_v.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\cursor_v.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\dialog-title-bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\filescan.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\highlighted.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\icons-all.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\icons.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\icons.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\loaderror.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\loading.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\lock.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\neweditor-tab-bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\pagebreak.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\scale.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\sortable.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\spacer.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\sparator_v.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\table-cell-align.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\tangram-colorpicker.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\toolbar_bg.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\unhighlighted.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\upload.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\videologo.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\word.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\images\wordpaste.png" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\autotypesetpicker.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\button.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\buttonicon.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\cellalignpicker.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\colorbutton.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\colorpicker.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\combox.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\contextmenu.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\dialog.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\editor.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\menu.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\menubutton.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\message.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\multiMenu.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\paragraphpicker.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\pastepicker.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\popup.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\separtor.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\shortcutmenu.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\splitbutton.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\tablepicker.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\toolbar.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\ueditor.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\default\_css\uibase.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\themes\iframe.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\codemirror\codemirror.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\codemirror\codemirror.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\adapters\mootools-adapter.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\adapters\mootools-adapter.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\adapters\prototype-adapter.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\adapters\prototype-adapter.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\adapters\standalone-framework.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\adapters\standalone-framework.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\highcharts-more.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\highcharts-more.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\highcharts.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\highcharts.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\annotations.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\annotations.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\canvas-tools.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\canvas-tools.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\data.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\data.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\drilldown.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\drilldown.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\exporting.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\exporting.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\funnel.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\funnel.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\heatmap.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\heatmap.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\map.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\map.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\no-data-to-display.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\modules\no-data-to-display.src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\themes\dark-blue.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\themes\dark-green.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\themes\gray.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\themes\grid.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\highcharts\themes\skies.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\jquery-1.10.2.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\jquery-1.10.2.min.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\snapscreen\UEditorSnapscreen.exe" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\SyntaxHighlighter\shCore.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\SyntaxHighlighter\shCoreDefault.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\font\vjs.svg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\video-js.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\video-js.min.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\video-js.swf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\video.dev.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\video.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\Uploader.swf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.custom.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.custom.min.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.flashonly.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.flashonly.min.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.html5only.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.html5only.min.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.min.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.withoutimage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\webuploader\webuploader.withoutimage.min.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\zeroclipboard\ZeroClipboard.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\zeroclipboard\ZeroClipboard.min.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\zeroclipboard\ZeroClipboard.swf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\ueditor.config.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\ueditor.parse.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\addCustomizeButton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\addCustomizeCombox.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\addCustomizeDialog.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\charts.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\completeDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\customizeDialogPage.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\customizeToolbarUIDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\customPluginDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\customToolbarDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\editor_api.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\filterRuleDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\highlightDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\index.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\jqueryCompleteDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\jqueryValidation.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\multiDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\multiEditorWithOneInstance.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\renderInTable.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\resetDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\sectiondemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\server\getContent.asp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\server\getContent.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\setWidthHeightDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\simpleDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\sortableDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\submitFormDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\textareaDemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\uparsedemo.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_parse\background.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_parse\charts.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_parse\insertcode.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_parse\list.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_parse\parse.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_parse\table.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_parse\video.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\adapter\autosave.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\adapter\editor.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\adapter\editorui.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\adapter\message.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\api.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\ajax.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\browser.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\domUtils.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\dtd.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\Editor.defaultoptions.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\Editor.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\EventBase.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\filternode.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\filterword.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\htmlparser.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\keymap.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\loadconfig.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\localstorage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\node.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\plugin.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\Range.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\Selection.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\core\utils.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\editor.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\anchor.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\autofloat.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\autoheight.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\autolink.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\autosave.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\autosubmit.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\autotypeset.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\autoupload.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\background.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\basestyle.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\blockquote.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\catchremoteimage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\charts.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\cleardoc.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\contextmenu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\convertcase.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\copy.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\customstyle.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\defaultfilter.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\directionality.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\dragdrop.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\elementpath.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\enterkey.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\fiximgclick.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\font.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\formatmatch.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\horizontal.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\iframe.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\image.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\indent.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\insertcode.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\insertfile.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\inserthtml.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\insertparagraph.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\justify.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\keystrokes.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\lineheight.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\link.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\list.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\music.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\pagebreak.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\paragraph.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\paste.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\preview.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\print.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\puretxtpaste.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\removeformat.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\rowspacing.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\scrawl.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\searchreplace.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\section.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\selectall.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\serverparam.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\shortcutmenu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\simpleupload.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\snapscreen.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\source.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\table.action.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\table.cmds.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\table.core.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\table.sort.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\template.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\time.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\undo.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\video.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\webapp.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\wordcount.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\plugins\wordimage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\autotypesetbutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\autotypesetpicker.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\breakline.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\button.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\cellalignpicker.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\colorbutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\colorpicker.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\combox.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\dialog.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\mask.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\menu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\menubutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\message.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\multiMenu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\pastepicker.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\popup.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\separator.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\shortcutmenu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\splitbutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\stateful.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\tablebutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\tablepicker.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\toolbar.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\ui.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\uibase.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_src\ui\uiutils.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\build_run.xml" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\build_run_core.xml" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\build_run_plugin.xml" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\build_run_ui.xml" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\ajax.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\ajax.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\browser.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\domUtils.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\Editor.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\EventBase.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\filternode.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\filterword.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\htmlparser.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\localstorage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\node.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\plugin.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\Range.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\Selection.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\tools.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\core\utils.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\editor_config.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\editor_config_src.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\import.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\index.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\anchor.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\auto.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\autofloat.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\autoheight.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\autolink.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\autosave.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\autosubmit.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\autotypeset.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\autoupload.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\background.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\basestyle.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\blockquote.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\catchremoteimage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\charts.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\cleardoc.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\contextmenu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\convertcase.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\copy.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\customstyle.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\defaultfilter.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\directionality.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\dragdrop.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\elementpath.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\enterkey.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\fiximgclick.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\font.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\formatmatch.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\horizontal.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\iframe.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\image.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\indent.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\insertcode.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\inserthtml.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\insertparagraph.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\justify.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\keystrokes.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\lineheight.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\link.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\list.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\music.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\pagebreak.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\paragraph.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\paste.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\preview.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\print.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\removeformat.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\rowspacing.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\scrawl.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\searchreplace.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\section.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\selectall.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\serverparam.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\shortcutkeys.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\shortcutmenu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\snapscreen.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\source.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\table.action.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\table.cmds.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\table.core.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\table.sort.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\template.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\time.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\tools.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\ueditor.config.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\undo.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\video.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\webapp.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\wordcount.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\plugins\wordimage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\qunit\jquery-1.5.1.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\qunit\qunit.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\qunit\qunit.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\qunit\tools.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\testDesign\readme.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\analysis.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\case.class.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\config.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\jscov.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\jscoverage-highlight.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\jscoverage-ie.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\jscoverage-throbber.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\jscoverage.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\jscoverage.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\jscoverage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\coverage\readCoverage.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\css\bg_button_a.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\css\bg_button_span.gif" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\css\qunit.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\css\tangramtest.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\css\testsuite.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\filehelper.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\geneHistory.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\geneHTML.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\geneXML.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\import.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\ext_qunit.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\jquery-1.5.1.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\run.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\tangram.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\testrunner.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\tools.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\UserAction.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\lib\Staf.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\lib\StafResult.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\list.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\log.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\mail.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\read.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\record.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\report.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\run.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\runall.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\runC.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\txt\test1_1.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\txt\test1_2.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\txt\test1_3.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\txt\test2_1.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\txt\test2_2.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\txt\test2_3.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\txt\test3_1.txt" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\coverage\jscoverage.exe" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\data\frame.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\data\frame.php" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\data\test.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\data\test.JPG" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\data\testReady.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\ant_tangram_ext.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\js.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\core\jshint\js.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\core\jshint\jshint-rhino.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\core\tpl\htmlpart.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\core\tpl\toggle_tpl.html" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\jshint.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jslint4java-2.0.2.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jslint4java-ant-1.4.2.jar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\npPlugintest.dll" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\autotypesetbutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\button.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\colorbutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\combox.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\css\DEFAULT.css" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\editor.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\editorui.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\mask.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\menu.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\menubutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\popup.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\separator.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\splitbutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\stateful.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\tablebutton.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\toolbar.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\tools.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\uibase.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\ui\uiutils.js" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\关键字.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AesController.cs" />
+    <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\FrameworkController.cs" />
+    <Compile Include="Controllers\SFileController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Controllers\WebsiteController.cs" />
+    <Compile Include="Controllers\VerificationCodeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\Config.cs" />
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\ConfigHandler.cs" />
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\CrawlerHandler.cs" />
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\Handler.cs" />
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\ListFileHandler.cs" />
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\NotSupportedHandler.cs" />
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\PathFormater.cs" />
+    <Compile Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\App_Code\UploadHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\.editorconfig" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\.gitignore" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\config.json" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\asp\README.md" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\changelog.md" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\ISSUE_TEMPLATE.md" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\.gitignore" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\config.json" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\controller.jsp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\jsp\README.md" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\LICENSE" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\config.json" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\controller.ashx" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\README.md" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\net\Web.config" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\package.json" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\php\config.json" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\README.md" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\jquery-1.10.2.min.map" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\font\vjs.eot" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\font\vjs.ttf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\third-party\video-js\font\vjs.woff" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\server\getContent.ashx" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_examples\server\getContent.jsp" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\testDesign\Manual regression cases.xmind" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\batchrun.sh" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\br\js\UserAction manual.rar" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\coverage\cov.bat" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\conf\check.cfg" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\conf\custcheck.conf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\conf\ignore.list" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\conf\omitfiles.conf" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\core\customcheck\cust.sh" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\hint.py" />
+    <Content Include="Admin\JavsScripts\ueditor-dev-2.0.0\_test\tools\lib\jshunter_1.2.0.1\jshunter_dev\jshunter\version" />
+    <Content Include="App_Data\LukeBlogDb.db" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Admin\UpLoadFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LukeBlog.Orm\LukeBlog.Orm.csproj">
+      <Project>{120ad2e2-8e4f-479e-bb54-95dd6b2b8fa6}</Project>
+      <Name>LukeBlog.Orm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64318</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64318/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

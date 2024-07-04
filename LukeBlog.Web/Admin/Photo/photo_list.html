@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../StyleSheet/basic1.css" rel="stylesheet" />
+    <link href="../StyleSheet/list.css" rel="stylesheet" />
+    <style>
+        #enlarge_images {
+            position: absolute;
+            display: none;
+            z-index: 2;
+            border: 3px solid gray;
+        }
+    </style>
+    <script src="../JavsScripts/jquery3.7.js"></script>
+    <script src="../JavsScripts/basicPost.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            CheckSignState();
+            var postUrl = "/Photo/GetPhotoList";
+            var keyword = document.getElementById("txtKeyword").value;
+            Search(postUrl, keyword);
+            getCheckedValues();
+        });
+
+        function showd(path) {
+            var demo = document.getElementById("demo");
+            var gg = document.getElementsByTagName("img");
+            var ei = document.getElementById("enlarge_images");
+            for (i = 0; i < gg.length; i++) {
+                var ts = gg[i];
+                ts.onmousemove = function (event) {
+                    event = event || window.event;
+                    ei.style.display = "block";
+                    ei.innerHTML = '<img src="' + path + '" style=\'width:100%; height:auto;\'  />';
+                    ei.style.top = document.body.scrollTop + event.clientY + 10 + "px";
+                    ei.style.left = document.body.scrollLeft + event.clientX + 10 + "px";
+                    ei.style.width = "20%";
+                    ei.style.height = "auto";
+                }
+                ts.onmouseout = function () {
+                    ei.innerHTML = "";
+                    ei.style.display = "none";
+                }
+                ts.onclick = function () {
+                    window.open(this.src);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="center">
+        <p class="title">
+            图片管理
+        </p>
+        <div class="toolbar">
+            <div class="serchbar">
+                <input id="txtKeyword" class="text-common" type="text" />
+                <input id="btnSearch" class="button-common" type="button" value="查询" onclick="Search('/Photo/GetPhotoList',document.getElementById('txtKeyword').value)" />
+            </div>
+            <input id="btnAdd" class="button-common" type="button" value="添加" onclick="window.location.href='photo_add.html'" />
+            <input id="btnEdit" class="button-common" type="button" value="编辑" disabled="disabled" onclick="Opreate(this,'photo_edit.html?id=','')" />
+            <input id="btnDel" class="button-common" type="button" value="删除" disabled="disabled" onclick="Opreate(this,'','/Photo/PhotoDeleteById?Ids=')" />
+        </div>
+        <div class="grid" id="table-container"></div>
+    </div>
+    <div id="enlarge_images"></div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../StyleSheet/basic1.css" rel="stylesheet" />
+    <link href="../StyleSheet/form.css" rel="stylesheet" />
+    <script src="../JavsScripts/jquery3.7.js"></script>
+    <script src="../JavsScripts/basicPost.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            CheckSignState();        
+            //加载分类控件的选项
+            document.getElementById("tdselect").innerHTML = LoadAllAlbum().data;
+            var res = ReturnExistInfo(window.location.search, "/Video/GetSigleVideoById?videoId=");
+            document.getElementById("txtId").value = res.data["Id"];
+            document.getElementById("txtTitle").value = res.data["Title"];
+            document.getElementById('slctAlbumId').value = res.data["AlbumId"];
+            document.getElementById("txtAuthor").value = res.data["Author"];
+            document.getElementById('slctIsPublished').value = res.data["IsPublished"];
+            document.getElementById("txtSeoKeywords").value = res.data["SeoKeywords"];
+            document.getElementById("txtSeoDescription").value = res.data["SeoDescription"];
+            document.getElementById("txtDescription").value = res.data["Description"];
+            document.getElementById("video-preview").src = "../UpLoadFiles/Videos/" + res.data["FilePath"];
+            document.getElementById("txtFilePath").value = res.data["FilePath"];
+        });
+
+        function submit() {
+            var form = new FormData();            
+            form.append("Id", $("#txtId").val());
+            form.append("Title", $("#txtTitle").val());
+            form.append("Description", $("#txtDescription").val());
+            form.append("ShootingTime", $("#txtShootingTime").val());
+            form.append("Author", $("#txtAuthor").val());
+            form.append("IsPublished", $("#slctIsPublished").val());
+            form.append("SeoKeywords", $("#txtSeoKeywords").val());
+            form.append("SeoDescription", $("#txtSeoDescription").val());
+            form.append("AlbumId", $("#slctAlbumId").val());
+            form.append("VideoFile", $('#video-input')[0].files[0]);
+            form.append("FilePath", $("#txtFilePath").val());
+            var url = "/Video/VideoUpdate";
+            var data = DataPost(url, form);
+            alert(data.status);
+            window.location.href = "video_list.html";
+        } 
+        function LoadVideo() {
+            document.getElementById("selectedVideo_tr").className = "";
+            var file = $('#video-input')[0].files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var video = document.getElementById('video-preview');
+                video.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</head>
+<body>
+    <div class="center">
+        <p class="title">
+            视频编辑
+        </p>
+        <div class="grid">
+            <table border="0">
+                <tr>
+                    <td class="column-name">标题</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtTitle" type="text" />
+                        <input id="txtId" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">作者</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtAuthor" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">选择视频文件</td>
+                    <td class="column-value">
+                        <input id="video-input" type="file" accept="video/*" 
+                               onchange="LoadFile('selectedVideo_tr','video-input','video-preview')" />
+                        <input id="txtFilePath" type="hidden" />
+                    </td>
+                </tr>
+                <tr id="selectedVideo_tr">
+                    <td class="column-name" valign="top">已选择视频</td>
+                    <td class="column-value" style="padding:5px;">
+                        <video id="video-preview" style="width:20%; height:auto;" controls>
+                            <source type="video/mp4">
+                            您的浏览器不支持Video标签。
+                        </video>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">合集类型</td>
+                    <td class="column-value" id="tdselect"></td>
+                </tr>
+                <tr>
+                    <td class="column-name">是否发布</td>
+                    <td class="column-value">
+                        <select class="select-common" id="slctIsPublished" name="IsPublished" style="width:177px;">
+                            <option value="1" selected="selected">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">SEO关键字</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtSeoKeywords" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">SEO描述</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtSeoDescription" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">备注</td>
+                    <td class="column-value">
+                        <textarea class="textarea-common" id="txtDescription"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name"></td>
+                    <td class="column-value">
+                        <input id="Button1" class="button-common" type="button" value="提交" onclick="submit()" />
+                        <input class="button-common" id="Button4" type="button" value="返回" onclick="window.location.href = 'video_list.html';" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

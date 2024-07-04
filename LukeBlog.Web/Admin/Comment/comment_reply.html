@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../StyleSheet/basic1.css" rel="stylesheet" />
+    <link href="../StyleSheet/form.css" rel="stylesheet" />
+    <script src="../JavsScripts/jquery3.7.js"></script>
+    <script src="../JavsScripts/basicPost.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //加载数据
+            var res = ReturnExistInfo(window.location.search, "/Comment/GetSigleCommentById?commentId=");
+            document.getElementById("txtCategoryId").value = res.data["CategoryId"];
+            document.getElementById("txtShowContent").value = res.data["Content"];
+            document.getElementById("txtSort").value = res.data["Sort"];
+            document.getElementById("txtContent").value = '#' + res.data["Sort"] + ':';
+        });
+
+
+        function submit() {
+            var url = "/Comment/CommentReply";
+            var form = new FormData();
+            form.append("Content", $("#txtContent").val());
+            form.append("CategoryId", $("#txtCategoryId").val());
+            form.append("SourceIp", "127.0.0.1");
+            form.append("SourceArea", "hebei");
+            var data = DataPost(url, form);
+            alert(data.status);
+            window.location.href = "article_list.html";
+        }
+
+    </script>
+</head>
+<body>
+    <div class="center">
+        <p class="title">
+            评论回复
+        </p>
+        <div class="grid">
+            <table border="0">
+                <tr>
+                    <td class="column-name">内容</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtShowContent" type="text" value="" />
+                        <input id="txtSort" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">回复内容</td>
+                    <td class="column-value">
+                        <textarea class="textarea-common" id="txtContent"></textarea>
+                        <input id="txtCategoryId" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name"></td>
+                    <td class="column-value">
+                        <input id="Button1" class="button-common" type="button" value="提交" onclick="submit()" />
+                        <input class="button-common" id="Button4" type="button" value="返回" onclick="window.location.href = '../Article/article_list.html';" />
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="StyleSheet/basic1.css" rel="stylesheet" />
+    <style type="text/css">
+        html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <table style="width: 100%; height: 100%;" border="0" cellspacing="0">
+        <tr>
+            <td colspan="2" style="height:60px; border-bottom:1px solid gray;">
+                <iframe style="vertical-align:bottom;" frameborder="0" border="0" scrolling="no" src="Public/Top.html" scrolling="no" width="100%" height="100%"></iframe>
+            </td>
+        </tr>
+        <tr>
+            <td style=" width:15%;   border-right:1px solid gray; ">
+                <iframe style="vertical-align:bottom;" frameborder="0" src="Public/Left.html" scrolling="no" width="100%" height="100%"></iframe>
+            </td>
+            <td>
+                <iframe style="vertical-align:bottom;" id="center" name="center" frameborder="0" src="Public/Center.html" scrolling="yes" width="100%" height="100%"></iframe>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="height: 40px; background-color:#F0F0F0; border-top:1px solid gray; ">
+                <iframe style="vertical-align:bottom;" frameborder="0" src="Public/Bottom.html" scrolling="no" width="100%" height="100%"></iframe>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title></title>
+    <link href="../StyleSheet/basic1.css" rel="stylesheet" />
+    <link href="../StyleSheet/form.css" rel="stylesheet" />
+    <script src="../JavsScripts/jquery3.7.js"></script>
+    <script src="../JavsScripts/ueditor-dev-2.0.0/ueditor.config.js"></script>
+    <script src="../JavsScripts/ueditor-dev-2.0.0/_examples/editor_api.js"></script>
+    <script src="../JavsScripts/basicPost.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            CheckSignState();
+            document.getElementById("tdselect").innerHTML = LoadAllAlbum().data;
+            var res = ReturnExistInfo(window.location.search, "/Article/GetSigleArticleById?articleId=");
+            document.getElementById("txtId").value = res.data["Id"];
+            document.getElementById("txtTitle").value = res.data["Title"];
+            document.getElementById('slctAlbumId').value = res.data["AlbumId"];
+            document.getElementById("txtAuthor").value = res.data["Author"];
+            document.getElementById('slctIsPublished').value = res.data["IsPublished"];
+            document.getElementById("txtSeoKeywords").value = res.data["SeoKeywords"];
+            document.getElementById("txtSeoDescription").value = res.data["SeoDescription"];
+            document.getElementById("txtMainPicPath").value = res.data["MainPicPath"];
+            document.getElementById("ExistImg").src = "../UpLoadFiles/Imgs/" + res.data["MainPicPath"];
+            document.getElementById("contentTd").innerHTML = "<script id='editor' name='Content' type='text/plain' style='width: 100%; height: 300px; '>" + decodeURI(res.data["Content"]) + "<\/script>";
+        });
+        
+        function submit() {
+            var url = "/Article/ArticleUpdate";
+            var form = new FormData();
+            form.append("Id", $("#txtId").val());
+            form.append("Title", $("#txtTitle").val());
+            form.append("Author", $("#txtAuthor").val());
+            form.append("AlbumId", $("#slctAlbumId").val());
+            form.append("IsPublished", $("#slctIsPublished").val());
+            form.append("Content", encodeURI(UE.getEditor('editor').getContent()));
+            form.append("SeoKeywords", $("#txtSeoKeywords").val());
+            form.append("MainPicPath", $("#txtMainPicPath").val());
+            form.append("SeoDescription", $("#txtSeoDescription").val());
+            form.append("Pic", $('#Img')[0].files[0]);
+            var data = DataPost(url, form);
+            alert(data.status);
+            window.location.href = "article_list.html";
+        } 
+    </script>
+</head>
+<body>
+    <div class="center">
+        <p class="title">
+            文档编辑
+        </p>
+        <div class="grid">
+            <table border="0">
+                <tr>
+                    <td class="column-name">标题</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtTitle" type="text" />
+                        <input id="txtId" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">作者</td>
+                    <td class="column-value"><input class="txt-common" id="txtAuthor" type="text" /></td>
+                </tr>
+                <tr>
+                    <td class="column-name">合集类型</td>
+                    <td class="column-value" id="tdselect"></td>
+                </tr>
+                <tr>
+                    <td class="column-name">是否发布</td>
+                    <td class="column-value">
+                        <select class="select-common" id="slctIsPublished" name="IsPublished" style="width:177px;">
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">SEO关键字</td>
+                    <td class="column-value"><input class="txt-common" id="txtSeoKeywords" type="text" value="" /></td>
+                </tr>
+                <tr>
+                    <td class="column-name">SEO描述</td>
+                    <td class="column-value"><input class="txt-common" id="txtSeoDescription" type="text" value="" /></td>
+                </tr>
+                <tr>
+                    <td class="column-name">添加主图</td>
+                    <td class="column-value">
+                        <input id="Img" type="file" accept="image/*"
+                               onchange="LoadFile('img_tr','Img','ExistImg')" />
+                        <input id="txtMainPicPath" type="hidden" />
+
+                    </td>
+                </tr>
+                <tr id="img_tr">
+                    <td class="column-name" valign="top">已选主图</td>
+                    <td class="column-value" style="padding:5px;">
+                        <img style="width: 50%; height:auto;" id="ExistImg" src="" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name" valign="top">内容</td>
+                    <td class="column-value" id="contentTd" style="padding: 5px;"></td>
+                </tr>
+                <tr>
+                    <td class="column-name"></td>
+                    <td class="column-value">
+                        <input class="button-common" id="Button1" type="button" value="提交" onclick="submit()" />
+                        <input class="button-common" id="Button4" type="button" value="返回" onclick="window.location.href = 'article_list.html';" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor');
+    </script>
+</body>
+</html>

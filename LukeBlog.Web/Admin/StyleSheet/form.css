@@ -1,0 +1,107 @@
+﻿.center {
+    margin: 15px;
+    width: auto;
+}
+
+.title {
+    border: solid 1px #909aa6;
+    border-bottom: none;
+    background-color: #E7EAEE;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.button-common {
+    margin-left: 20px;
+    width: 55px;
+    height: 25px;
+    border: solid 1px #909aa6;
+}
+
+.text-common {
+    width: 180px;
+    height: 25px;
+    border: solid 1px #909aa6;
+    padding: 3px;
+}
+
+.toolbar {
+    border: solid 1px #909aa6;
+    height: 40px;
+    line-height: 40px;
+    float: right;
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.serchbar {
+    float: right;
+    margin-right: 20px;
+}
+
+.grid {
+    border-top: solid 1px #909aa6;
+    border-left: solid 1px #909aa6;
+    width: 100%;
+}
+
+.pager {
+    height: 40px;
+    line-height: 40px;
+    background-color: #E7EAEE;
+    padding-left: 0px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    border-bottom: solid 1px #909aa6;
+    border-right: solid 1px #909aa6;
+    height: 35px;
+    line-height: 35px;
+}
+
+.select-common {
+    width: 177px;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 3px;
+    border: 1px solid #909aa6;
+}
+
+.txt-common {
+    width: 177px;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 3px;
+    border: 1px solid #909aa6;
+}
+
+.textarea-common {
+    height: 100px;
+    width: 850px;
+    padding: 3px;
+    margin: 5px;
+    margin-left: 0px;
+    border: 1px solid #909aa6;
+}
+
+.column-name {
+    width: 150px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.column-value {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.hide {
+    display: none;
+}

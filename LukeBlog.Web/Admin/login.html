@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="StyleSheet/basic1.css" rel="stylesheet" />
+    <link href="StyleSheet/form.css" rel="stylesheet" />
+    <style type="text/css">
+        .column-name {
+            width: auto;
+        }
+    </style>
+
+
+    <script src="JavsScripts/jquery3.7.js"></script>
+    <script src="JavsScripts/basicPost.js"></script>
+    <script type="text/javascript">
+        function submit() {
+            var url = "/Website/UserLogin";
+            var form = new FormData();
+            form.append("userName", $("#txtUserName").val());
+            form.append("password", $("#txtPassword").val());
+            form.append("verificationCode", $("#txtVerificationCode").val());
+            var data = DataPost(url, form);
+            if (data.status == "-1") {
+                alert(data.data);
+                window.location.href = "login.html";
+            }
+            else {
+                if ($("#txtPassword").val() == "admin") {
+                    if (confirm("登录成功！建议您修改初始密码！") == true) {
+                        window.location.href = "System/passwordmodify.html";
+                    }
+                    else {
+                        window.location.href = "index.html";
+                    }
+
+                }
+                else {
+                    window.location.href = "index.html";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="center" style="width:350px; margin:0 auto; margin-top:120px; text-shadow:10px;">
+        <p class="title" style="text-align:center;">
+            CMS后台管理
+        </p>
+        <div class="grid">
+            <table border="0">
+                <tr>
+                    <td class="column-name">用户名</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtUserName" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">密码</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtPassword" type="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">验证码</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtVerificationCode" type="text" style="width:125px;" />
+                        <img src="/VerificationCode/GetVerificationCode"
+                             alt="Verification Code" onclick="this.src='/VerificationCode/GetVerificationCode?time='+new Date().getTime();">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style=" ">
+                        <input style=" margin-right:120px; float:right; width:125px;" id="Button1" class="button-common" type="button"
+                               value="提交" onclick="submit()" />
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+</html>

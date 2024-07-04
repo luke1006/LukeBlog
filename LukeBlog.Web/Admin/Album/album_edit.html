@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../StyleSheet/basic1.css" rel="stylesheet" />
+    <link href="../StyleSheet/form.css" rel="stylesheet" />
+
+    <script src="../JavsScripts/jquery3.7.js"></script>
+    <script src="../JavsScripts/basicPost.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            CheckSignState();
+            var res = ReturnExistInfo(window.location.search, "/Album/GetSigleAlbumById?albumId=");
+            document.getElementById("txtTitle").value = res.data["Title"];
+            document.getElementById("txtId").value = res.data["Id"];
+            document.getElementById('slctTypeName').value = res.data["TypeName"];
+        });
+
+        function submit() {
+            var url = "/Album/AlbumUpdate";
+            var form = new FormData();
+            form.append("Id", $("#txtId").val());
+            form.append("Title", $("#txtTitle").val());
+            form.append("TypeName", $("#slctTypeName").val());
+            var data = DataPost(url, form);
+            alert(data.status);
+            window.location.href = "album_list.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="center">
+        <p class="title">
+            合集编辑
+        </p>
+        <div class="grid">
+            <table border="0">
+                <tr>
+                    <td class="column-name">合集名称</td>
+                    <td class="column-value">
+                        <input class="txt-common" id="txtTitle" name="Title" type="text" />
+                        <input id="txtId" name="Id" type="hidden" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column-name">合集类别</td>
+                    <td class="column-value">
+                        <select class="select-common" id="slctTypeName" name="TypeName" style="width:176px;">
+                            <option value="文档">文档</option>
+                            <option value="图片">图片</option>
+                            <option value="视频">视频</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="column-name"></td>
+                    <td class="column-value">
+                        <input class="button-common" id="Button1" type="button" value="提交" onclick="submit()" />
+                        <input class="button-common" id="Button4" type="button" value="返回" onclick="window.location.href = 'album_list.html';" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
